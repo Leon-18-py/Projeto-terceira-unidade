@@ -1,18 +1,26 @@
-def cancelar_reserva(reservas,caronas):
-    emailUsuario = str(input("Informe o email:"))
-    while(not "@" in emailUsuario or not emailUsuario.endswith('.com') and "gmail" in emailUsuario):
+def cancelar_reserva(reservas, caronas):
+    emailUsuario = input("Informe o email: ")
+    while not ("@" in emailUsuario and emailUsuario.endswith('.com') and "gmail" in emailUsuario):
         print("Email inválido")
         emailUsuario = input("Digite seu email: ")
-    dataCarona = str(input("Informe a data da carona: "))
+
+    dataCarona = input("Informe a data da carona: ")
     indice = -1
-    for ind in range(len(reservas)):
-        if(emailUsuario == reservas[ind]["emailUsuario"] and dataCarona == reservas[ind]["dataCarona"]):
-            indice = ind
-        if(indice == -1):
-            print("Reserva não encontrada")
-        for car in caronas:
-            if(vagas == car["vagas"] and passageiro == car["passageiro"]):
-              vagas += 1
-              passageiro -= 1
-              print("Reserva excluída")
-              reservas.pop(indice)
+
+    for i in range(len(reservas)):
+        if emailUsuario == reservas[i]["emailUsuario"] and dataCarona == reservas[i]["dataCarona"]:
+            indice = i
+            break  
+
+    if indice == -1:
+        print("Reserva não encontrada")
+        return
+
+    for car in caronas:
+        if (car["data"] == dataCarona and car["email"] == reservas[indice]["emailUsuario"]):
+            car["vagas"] += 1
+            car["passageiro"] -= 1
+            break
+
+    reservas.pop(indice)
+    print("Reserva cancelada com sucesso.")

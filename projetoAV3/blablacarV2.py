@@ -9,7 +9,8 @@ import reserva.remover_reserva as remover
 import caronas.remover_carona as removerca
 import caronas.detalhes as detalhe
 import caronas.mostrar_cadastro as mostrar
-
+import relatorio.relatorioTotal as rela
+caminho = "C:\\Users\\COMPUTER\\Downloads\\Python_VS_code\\projetoAV3\\usuarios\\usuarios.txt"
 usuarios = list()
 caronas = list()
 reservas = list()
@@ -67,6 +68,8 @@ while(True):
                         detalhe.detalheCarona(caronas)
                     elif(op == '8'):
                       mostrar.caronasCadastradas(email, caronas)
+                    elif(op == '9'):
+                        rela.receberTotal(email, caronas)
                     elif(op == '0'):
                         print("Voltando ao menu cadastro")
                         break
